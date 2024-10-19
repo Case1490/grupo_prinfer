@@ -1,3 +1,6 @@
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -8,8 +11,74 @@
   --BlueDark: #212838;
 }
 
-/* INPUT STYLES */
-/* From Uiverse.io by Shaidend */
+
+/* LOADER */
+/* From Uiverse.io by 00Kubi */
+.loader {
+  width: 48px;
+  height: 48px;
+  margin: auto;
+  position: relative;
+}
+
+.loader:before {
+  content: '';
+  width: 48px;
+  height: 5px;
+  background: #FFD700;
+  position: absolute;
+  top: 60px;
+  left: 0;
+  border-radius: 50%;
+  animation: shadow324 0.5s linear infinite;
+}
+
+.loader:after {
+  content: '';
+  width: 100%;
+  height: 100%;
+  background: #FFD700;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  animation: jump7456 0.5s linear infinite;
+}
+
+@keyframes jump7456 {
+  15% {
+    border-bottom-right-radius: 50%;
+  }
+
+  25% {
+    transform: translateY(9px) rotate(22.5deg);
+  }
+
+  50% {
+    transform: translateY(18px) scale(1, .9) rotate(45deg);
+    border-bottom-right-radius: 40px;
+  }
+
+  75% {
+    transform: translateY(9px) rotate(67.5deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(90deg);
+  }
+}
+
+@keyframes shadow324 {
+
+  0%,
+  100% {
+    transform: scale(1, 1);
+  }
+
+  50% {
+    transform: scale(1.2, 1);
+  }
+}
 
 hr{
   border: 1px solid;
@@ -90,6 +159,13 @@ hr{
   font-weight: bold;
   transition: all 300ms ease;
 }
+.active{
+  background-color: var(--YellowMain);
+    color: var(--BlueDark);
+    -webkit-box-shadow: 10px 10px 99px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 10px 10px 99px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 10px 10px 99px -9px rgba(0, 0, 0, 0.75);
+}
 
 .active, .link:hover{
   background-color: var(--YellowMain);
@@ -99,16 +175,19 @@ hr{
     box-shadow: 10px 10px 99px -9px rgba(0, 0, 0, 0.75);
 }
 
+/* PRODUCTOS DEL MES CARROUSEL */
+
 .carousel-container {
   position: relative;
   width: 100%;
   overflow: hidden;
+  padding: 60px;
 }
 
 .carousel-slide {
   display: flex;
   transition: transform 0.5s ease-in-out;
-  column-gap: 14px;
+  column-gap: 10px;
   padding: 10px;
 }
 
@@ -117,31 +196,50 @@ hr{
   top: 50%;
   transform: translateY(-50%);
   background-color: rgba(0, 0, 0, 0.5);
-  color: white;
   border: none;
   padding: 10px;
   cursor: pointer;
   z-index: 5;
 }
 
-.arrow.left {
-  left: 10px;
-}
-
-.arrow.right {
-  right: 10px;
-}
-
 .carousel-slide .product {
   flex: 0 0 25%;
   max-width: 24%;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  /* Alinea los elementos verticalmente */
+  justify-content: space-between;
+  /* Distribuye el contenido uniformemente */
+  height: 100%;
+  /* Asegura que la card ocupe todo el espacio disponible */
+  min-height: 450px;
+  /* Ajusta esta altura mínima según tu diseño */
   transition: all 300ms ease;
 }
 
-.carousel-slide .product:hover{
+.product:hover{
   transform: scale(1.05);
   cursor: pointer;
 }
+
+.image-container {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.product-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
 
 @media (max-width: 992px) {
   .carousel-slide .product {
@@ -175,4 +273,105 @@ hr{
     gap: 0;
     margin-left: 14px;
   }
+}
+
+.slick-prev,
+.slick-next {
+  position: absolute;
+  top: 50%;
+  /* Coloca las flechas verticalmente centradas */
+  transform: translateY(-50%);
+  /* Ajusta la posición vertical */
+  z-index: 50;
+  /* Asegura que las flechas estén por encima del carrusel */
+  background-color: rgba(0, 0, 0, 0.5);
+  /* Fondo para que las flechas sean visibles */
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.slick-prev {
+  left: -50px;
+  /* Mueve la flecha izquierda hacia fuera del contenedor */
+}
+
+.slick-next {
+  right: -50px;
+  /* Mueve la flecha derecha hacia fuera del contenedor */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  font-size: 20px;
+  color: white;
+  /* Color de las flechas */
+}
+
+.slick-prev,
+.slick-next {
+  color: #333;
+  /* O el color que quieras aplicar */
+  opacity: 1;
+  /* Asegúrate de que las flechas sean completamente visibles */
+}
+
+.slick-prev:hover,
+.slick-next:hover,
+.slick-prev:focus,
+.slick-next:focus {
+  color: #333;
+  /* Mantiene el color al hacer hover o al enfocarse */
+  opacity: 1;
+  /* Evita que se vuelva más opaca o transparente */
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: #333;
+  /* Esto es para el ícono de la flecha */
+}
+
+.slick-prev:hover:before,
+.slick-next:hover:before,
+.slick-prev:focus:before,
+.slick-next:focus:before {
+  color: #333;
+  /* Mantén el color del ícono al hacer hover o focus */
+}
+
+/* FIN PRODUCTOS DEL MES CARROUSEL */
+
+/* ZOOM DE PRODUCTO */
+.zoom-lens {
+  position: absolute;
+  width: 80px;
+  /* Ajusta el tamaño según tu necesidad */
+  height: 80px;
+  /* Ajusta el tamaño según tu necesidad */
+  border: 1px solid #000;
+  /* Un borde para ver la lente */
+  opacity: 0.5;
+  /* Opción de hacerla un poco transparente */
+  background-color: rgba(255, 255, 255, 0.5);
+  /* Color de fondo con opacidad */
+  pointer-events: none;
+  /* Para que no interfiera con el mouse */
+}
+
+.zoom-result {
+  position: absolute;
+  border-radius: 5px;
+  width: 300px;
+  /* Ajusta el tamaño según tu necesidad */
+  height: 300px;
+  /* Ajusta el tamaño según tu necesidad */
+  top: 0;
+  left: 85%;
+  background-repeat: no-repeat;
+  background-size: 1000px 1000px;
+  /* Ajusta el tamaño según tu necesidad */
+  z-index: 100;
+  display: none;
+  /* Oculta la vista de zoom por defecto */
 }

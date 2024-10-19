@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import Logo from '../assets/Logo_amarillo.png';
 import IconPDF from '../assets/icon_pdf.png';
 
@@ -35,13 +36,23 @@ const Navbar = () => {
           <p>Catálogo de Productos</p>
         </div>
       </div>
-      <div className=' bg-BlueDark text-white'>
+      <div className=" bg-BlueDark text-white">
         <div className="w-[80%] m-auto flex">
-          <a href="" className="link active">INICIO</a>
-          <a href="" className='link'>PRODUCTOS</a>
-          <a href="" className='link'>NOVEDADES</a>
-          <a href="" className='link'>SOBRE NOSOTROS</a>
-          <a href="" className='link'>CONTACTO</a>
+          <NavLink to="/" className="link">
+            INICIO
+          </NavLink>
+          <NavLink to="/productos" className="link">
+            PRODUCTOS
+          </NavLink>
+          <NavLink to="/novedades" className="link">
+            NOVEDADES
+          </NavLink>
+          <NavLink to="/nosotros" className="link">
+            SOBRE NOSOTROS
+          </NavLink>
+          <NavLink to="/contacto" className="link">
+            CONTACTO
+          </NavLink>
         </div>
       </div>
     </div>
