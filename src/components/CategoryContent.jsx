@@ -9,13 +9,13 @@ import {
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
 import CardProductoCategory from "./CardProductoCategory";
 
-const CategoryContent = ({ selectedCategory }) => {
+const CategoryContent = ({ selectedCategory, collectionName }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (selectedCategory) {
+    if (selectedCategory && collectionName) {
       const fetchProducts = async () => {
         setLoading(true);
         setError(null);
@@ -25,12 +25,16 @@ const CategoryContent = ({ selectedCategory }) => {
           const db = getFirestore();
           const storage = getStorage();
 
-          const productsRef = collection(db, "productos_electricos");
+          const productsRef = collection(db, collectionName);
           const q = query(
             productsRef,
             where("categoria", "==", selectedCategory)
           );
           const querySnapshot = await getDocs(q);
+
+          console.log("Selected Category:", selectedCategory);
+          console.log("Collection Name:", collectionName);
+
 
           if (querySnapshot.empty) {
             setError(`No hay productos en la categoría: ${selectedCategory}`);
@@ -56,7 +60,6 @@ const CategoryContent = ({ selectedCategory }) => {
 
                 try {
                   const imageUrl = await getDownloadURL(imageRef);
-                  console.log("Image URL:", imageUrl); // Imprimir URL de imagen
                   return {
                     id: doc.id,
                     ...productData,
@@ -87,7 +90,7 @@ const CategoryContent = ({ selectedCategory }) => {
 
       fetchProducts();
     }
-  }, [selectedCategory]);
+  }, [selectedCategory, collectionName]);
 
   return (
     <div className="content">

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
   const [openMenus, setOpenMenus] = useState({
-    "Componentes Eléctricos": false,
+    "Componentes Eléctricos": true,
     EPPS: false,
     "Herramientas Manuales y de Poder": false,
     "Limpieza Industrial": false,
