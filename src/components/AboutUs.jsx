@@ -1,10 +1,18 @@
+import { useEffect } from 'react';
 import Nacimiento from '../assets/seccion_sobrenosotros/nacimiento.jpg';
-import Card from '../helpers/Card';
+import CardVision from './CardVision';
+import GoalsFuture from './GoalsFuture';
+import FaqQuestions from './FaqQuestions';
 
 const AboutUs = () => {
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
+
   return (
     <div className=" min-h-screen flex items-center justify-center w-[80%] m-auto">
-      <div>
+      <div className="my-10">
         <h1 className="text-4xl font-bold text-center mb-14">
           Te invitamos a conocernos un poco más
         </h1>
@@ -40,13 +48,33 @@ const AboutUs = () => {
           </div>
         </div>
 
-        <div>
-          <h1>Nuestra Misión, Visión y Valores</h1>
+        <div className="mt-10">
+          <h1 className="text-4xl font-bold text-center mb-4">
+            Nuestra Misión, Visión y Valores
+          </h1>
 
           <div>
-            <Card />
-            <Card />
-            <Card />
+            <CardVision />
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <h1 className="text-4xl font-bold text-center mb-8">
+            Nuestros planes a Futuro
+          </h1>
+
+          <div>
+            <GoalsFuture />
+          </div>
+        </div>
+
+        <div className="mt-10">
+          <h1 className="text-4xl font-bold text-center mb-8">
+            Preguntas Frequentes
+          </h1>
+
+          <div>
+            <FaqQuestions />
           </div>
         </div>
       </div>

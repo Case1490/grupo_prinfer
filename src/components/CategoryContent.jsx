@@ -32,10 +32,6 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
           );
           const querySnapshot = await getDocs(q);
 
-          console.log("Selected Category:", selectedCategory);
-          console.log("Collection Name:", collectionName);
-
-
           if (querySnapshot.empty) {
             setError(`No hay productos en la categoría: ${selectedCategory}`);
           } else {
@@ -93,8 +89,8 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
   }, [selectedCategory, collectionName]);
 
   return (
-    <div className="content">
-      <h2 className="text-xl uppercase text-center font-bold mb-10">
+    <div className="p-2">
+      <h2 className="text-xl uppercase text-center font-bold mb-6 mt-3">
         {selectedCategory}
       </h2>
       {loading ? (
@@ -102,7 +98,7 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <div className="product-grid grid grid-cols-3 gap-x-2 gap-y-6">
+        <div className="grid grid-cols-3 gap-x-2 gap-y-6">
           {products.length > 0 ? (
             products.map((product) => (
               <div key={product.id} className="product-card">

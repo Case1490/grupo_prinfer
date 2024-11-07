@@ -1,6 +1,7 @@
 // firebase.js
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore"; // Si usarás Firestore
+import { getStorage } from "firebase/storage"; // Importa getStorage para Firebase Storage
 
 const firebaseConfig = {
   apiKey: "AIzaSyCVu3iVpruPKlSkpiMeSODyhjeBxXitgNI",
@@ -17,4 +18,7 @@ const app = initializeApp(firebaseConfig);
 // Inicializar Firestore si lo necesitas
 const db = getFirestore(app);
 
-export { db };
+// Inicializar Firebase Storage
+const storage = getStorage(app); // Aquí inicializamos el Storage
+
+export { db, storage }; // Exportamos también el storage

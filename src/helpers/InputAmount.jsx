@@ -16,16 +16,16 @@ const InputAmount = () => {
   return (
     <div className="flex items-center justify-center space-x-2 flex-1">
       <button
-        className=" hover:bg-gray-300 px-3 py-2 rounded-lg border-black border-2"
+        className=" hover:bg-gray-300 px-3 py-2 rounded-lg bg-black text-xl"
         onClick={decreaseQuantity}
       >
         -
       </button>
-      <span className="px-3 py-2 border-black border-2 rounded-lg flex-1">
+      <span className="px-3 py-2 border-black border-2 rounded-lg flex-1 text-center">
         {quantity}
       </span>
       <button
-        className=" hover:bg-gray-300 px-3 py-2 rounded-lg border-black border-2"
+        className=" hover:bg-gray-300 px-3 py-2 rounded-lg bg-black text-xl"
         onClick={increaseQuantity}
       >
         +

@@ -1,12 +1,11 @@
 import { useState } from "react";
 import SidebarCategories from "./SidebarCategories";
-import Pagination from "./Pagination";
 import CategoryContent from "./CategoryContent";
 
 const AllProduct = () => {
-  const [selectedSubcategory, setSelectedSubcategory] = useState("");
-  const [currentPage, setCurrentPage] = useState(1);
-  const totalPages = 5; // Suponiendo que tienes 5 páginas de contenido.
+  const [selectedSubcategory, setSelectedSubcategory] = useState(
+    "Conductores Eléctricos - Cables"
+  );
 
   // Definir las subcategorías
   const subcategories = {
@@ -40,17 +39,7 @@ const AllProduct = () => {
 
   const handleCategorySelect = (subcategory) => {
     setSelectedSubcategory(subcategory);
-    setCurrentPage(1);
   };
-
-  const handleNextPage = () => {
-    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
-  };
-
-  const handlePreviousPage = () => {
-    setCurrentPage((prev) => Math.max(prev - 1, 1));
-  };
-
   // Si se encontró una colección, úsala; de lo contrario, usa "productos_electricos"
 
   // Buscar la colección asociada a la subcategoría seleccionada
@@ -66,8 +55,6 @@ const AllProduct = () => {
   const collectionToUse =
     getCollectionForSelectedSubcategory(selectedSubcategory);
 
-  console.log(collectionToUse);
-
   return (
     <div className="flex w-[85%] m-auto">
       <SidebarCategories
@@ -75,13 +62,6 @@ const AllProduct = () => {
         onSelectCategory={handleCategorySelect}
       />
       <div className="main-content">
-        <Pagination
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onPrevious={handlePreviousPage}
-          onNext={handleNextPage}
-        />
-
         {selectedSubcategory && (
           <CategoryContent
             selectedCategory={selectedSubcategory}

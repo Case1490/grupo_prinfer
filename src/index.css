@@ -221,7 +221,7 @@ hr{
 }
 
 .product:hover{
-  transform: scale(1.05);
+  transform: scale(1.02);
   cursor: pointer;
 }
 
@@ -450,3 +450,195 @@ button:disabled {
   transition: all 300ms ease;
 }
 
+.cardVision {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 10px;
+  margin: 10px;
+  transition: transform 0.3s ease;
+}
+
+.cardVision:hover {
+  transform: scale(1.05);
+}
+
+.background-image {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  z-index: 1;
+  filter: brightness(0.7);
+}
+
+.background-image::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.1));
+}
+
+.contentAboutUs {
+  position: relative;
+  z-index: 2;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+@media (max-width: 640px) {
+  .contentAboutUs {
+    max-width: 80%;
+  }
+}
+
+@media (max-width: 635px) {
+  .cardVision {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media (max-width: 510px) {
+  .cardVision {
+    width: 60%;
+  }
+}
+
+@media (max-width: 380px) {
+  .cardVision {
+    width: 50%;
+  }
+}
+
+/* From Uiverse.io by ahmedyasserdev */
+.unique-card {
+  position: relative;
+  width: 500px;
+  height: 250px;
+  overflow: hidden;
+  border: 2px solid;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.unique-card:hover {
+  transform: scale(1.1);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  border: 0;
+}
+
+.card-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: #000;
+  z-index: 2;
+  transition: color 0.3s;
+}
+
+.unique-card:hover .card-content {
+  color: #ff7e5f;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(52, 73, 94, 0.7);
+  border-radius: 15px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.unique-card:hover .background-overlay {
+  opacity: 1;
+}
+
+.card-title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.card-description {
+  font-size: 16px;
+}
+.faq-section {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.faq-container {
+  margin-top: 1rem;
+}
+
+.faq-item {
+  border-bottom: 1px solid #ddd;
+  padding: 1rem 0;
+  cursor: pointer;
+}
+
+.faq-question {
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+}
+
+.faq-answer.open {
+  max-height: 300px;
+  /* Ajusta según la altura aproximada de la respuesta más larga */
+}
+
+.faq-answer p {
+  margin: 0;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  color: #333;
+}
+
+.imageContact{
+  mask-image: linear-gradient(
+    rgb(255, 255, 255) 90%,
+    transparent
+  );
+}
+
+.mapa {
+  width: 600px;
+  height: 450px;
+}
+
+@media (max-width: 660px) {
+  .mapa {
+    width: 400px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 450px) {
+  .mapa {
+    width: 340px;
+    height: 300px;
+  }
+}
