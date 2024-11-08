@@ -1,3 +1,4 @@
+// SidebarCategories.js
 import React, { useState } from "react";
 
 const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
@@ -8,7 +9,6 @@ const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
     "Limpieza Industrial": false,
   });
 
-  // Definir las subcategorías para todos los títulos
   const subcategories = {
     "Componentes Eléctricos": [
       "Conductores Eléctricos - Cables",
@@ -18,7 +18,7 @@ const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
       "Materiales Aislantes",
       "Telecomunicaciones y Seguridad Electrónica",
     ],
-    "EPPS": ["Protección Personal", "Protección Auditiva", "Protección Visual"],
+    EPPS: ["Protección Personal", "Protección Auditiva", "Protección Visual"],
     "Herramientas Manuales y de Poder": [
       "Herramientas de Mano",
       "Herramientas Eléctricas",
@@ -31,19 +31,17 @@ const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
     ],
   };
 
-  // Función para manejar el clic en los títulos
   const handleCategoryClick = (category) => {
     setOpenMenus((prevState) => ({
       ...prevState,
-      [category]: !prevState[category], // Cambia el estado solo del menú seleccionado
+      [category]: !prevState[category],
     }));
   };
 
   return (
-    <div className="sidebar">
+    <div className="w-full p-4">
       <h2 className="text-xl font-bold uppercase">Categorías</h2>
       <ul>
-        {/* Mapeamos sobre las categorías principales */}
         {Object.keys(subcategories).map((category, index) => (
           <React.Fragment key={index}>
             <li
@@ -52,9 +50,8 @@ const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
             >
               {category}
             </li>
-            {/* Mostramos el submenú si el estado del menú correspondiente es true */}
             {openMenus[category] && (
-              <ul className="submenu">
+              <ul className="submenu pl-4">
                 {subcategories[category].map((subcategory, subIndex) => (
                   <li
                     key={subIndex}

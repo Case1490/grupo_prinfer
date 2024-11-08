@@ -11,6 +11,9 @@
   --BlueDark: #212838;
 }
 
+body{
+  scroll-behavior: smooth;
+}
 
 /* LOADER */
 /* From Uiverse.io by 00Kubi */
@@ -177,36 +180,6 @@ hr{
 
 /* PRODUCTOS DEL MES CARROUSEL */
 
-.carousel-container {
-  position: relative;
-  width: 100%;
-  overflow: hidden;
-  padding: 60px;
-}
-
-.carousel-slide {
-  display: flex;
-  transition: transform 0.5s ease-in-out;
-  column-gap: 10px;
-  padding: 10px;
-}
-
-.arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  border: none;
-  padding: 10px;
-  cursor: pointer;
-  z-index: 5;
-}
-
-.carousel-slide .product {
-  flex: 0 0 25%;
-  max-width: 24%;
-}
-
 .product {
   display: flex;
   flex-direction: column;
@@ -234,11 +207,6 @@ hr{
   overflow: hidden;
 }
 
-.product-image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
 
 
 @media (max-width: 992px) {
@@ -641,4 +609,37 @@ button:disabled {
     width: 340px;
     height: 300px;
   }
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 10;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  background-color: white;
+  z-index: 20;
+  transform: translateX(0);
+  transition: transform 0.3s ease;
+}
+
+.close-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close-btn:hover{
+  background-color: red;
 }

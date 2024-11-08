@@ -1,3 +1,4 @@
+// CategoryContent.js
 import { useState, useEffect } from "react";
 import {
   getFirestore,
@@ -24,7 +25,6 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
         try {
           const db = getFirestore();
           const storage = getStorage();
-
           const productsRef = collection(db, collectionName);
           const q = query(
             productsRef,
@@ -38,46 +38,22 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
             const productsList = await Promise.all(
               querySnapshot.docs.map(async (doc) => {
                 const productData = doc.data();
-                const imagePath = productData.imagen; // Asegúrate de que esto es la ruta correcta
+                const imagePath = productData.imagen;
 
-                console.log("Processing product:", productData); // Imprimir datos del producto
-
-                // Comprobar si imagePath está definido
-                if (!imagePath) {
-                  console.error(
-                    "Image path is not defined for product:",
-                    productData
-                  );
+                if (!imagePath)
                   throw new Error("La ruta de la imagen no está definida.");
-                }
 
-                // Crear referencia no raíz
                 const imageRef = ref(storage, imagePath);
-
-                try {
-                  const imageUrl = await getDownloadURL(imageRef);
-                  return {
-                    id: doc.id,
-                    ...productData,
-                    imageUrl,
-                  };
-                } catch (fetchError) {
-                  console.error(
-                    "Error fetching image URL for product:",
-                    productData,
-                    fetchError
-                  );
-                  throw new Error("Error al obtener la URL de la imagen.");
-                }
+                const imageUrl = await getDownloadURL(imageRef);
+                return { id: doc.id, ...productData, imageUrl };
               })
             );
 
             setProducts(productsList);
           }
         } catch (error) {
-          console.error("Error fetching products: ", error);
           setError(
-            "Error al cargar los productos. Por favor, inténtalo más tarde."
+            "Error al cargar los productos. Por favor, inténtalo más tarde.", error
           );
         }
 
@@ -98,7 +74,7 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
       ) : error ? (
         <p>{error}</p>
       ) : (
-        <div className="grid grid-cols-3 gap-x-2 gap-y-6">
+        <div className="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6">
           {products.length > 0 ? (
             products.map((product) => (
               <div key={product.id} className="product-card">

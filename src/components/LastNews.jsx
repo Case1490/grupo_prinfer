@@ -10,6 +10,11 @@ const LastNews = () => {
   const [loading, setLoading] = useState(true); // Estado para manejar el loader
   const storage = getStorage(); // Inicializa Firebase Storage
 
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
+
   useEffect(() => {
     const fetchProducts = async () => {
       try {
@@ -45,7 +50,7 @@ const LastNews = () => {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-screen">
-        <div className="loader"></div> {/* Aquí puedes definir tu loader */}
+        <div className="loader"></div> 
       </div>
     );
   }

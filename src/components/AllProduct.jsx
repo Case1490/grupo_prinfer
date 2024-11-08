@@ -6,8 +6,8 @@ const AllProduct = () => {
   const [selectedSubcategory, setSelectedSubcategory] = useState(
     "Conductores Eléctricos - Cables"
   );
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Definir las subcategorías
   const subcategories = {
     "Componentes Eléctricos": [
       "Conductores Eléctricos - Cables",
@@ -39,35 +39,69 @@ const AllProduct = () => {
 
   const handleCategorySelect = (subcategory) => {
     setSelectedSubcategory(subcategory);
+    setIsSidebarOpen(false); // Cerrar el sidebar después de seleccionar una categoría en pantallas pequeñas
   };
-  // Si se encontró una colección, úsala; de lo contrario, usa "productos_electricos"
 
-  // Buscar la colección asociada a la subcategoría seleccionada
   const getCollectionForSelectedSubcategory = (subcategory) => {
     for (const [category, subs] of Object.entries(subcategories)) {
       if (subs.includes(subcategory)) {
-        return collectionMapping[category] || "productos_electricos"; // Valor predeterminado si no se encuentra
+        return collectionMapping[category] || "productos_electricos";
       }
     }
-    return "productos_electricos"; // Valor predeterminado si no se encuentra ninguna coincidencia
+    return "productos_electricos";
   };
 
   const collectionToUse =
     getCollectionForSelectedSubcategory(selectedSubcategory);
 
   return (
-    <div className="flex w-[85%] m-auto">
-      <SidebarCategories
-        selectedCategory={selectedSubcategory}
-        onSelectCategory={handleCategorySelect}
-      />
-      <div className="main-content">
-        {selectedSubcategory && (
-          <CategoryContent
+    <div className="w-[85%] m-auto relative">
+      {/* Botón para abrir/cerrar el sidebar en pantallas pequeñas */}
+      <button
+        className="block md:hidden my-4 p-2 bg-gray-200 text-gray-800 rounded"
+        onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+      >
+        {isSidebarOpen ? "Cerrar Categorías" : "Ver Categorías"}
+      </button>
+
+      {/* Fondo oscuro detrás del sidebar */}
+      {isSidebarOpen && (
+        <div
+          className="overlay inset-0 bg-black bg-opacity-50 z-10"
+          onClick={() => setIsSidebarOpen(false)}
+        ></div>
+      )}
+
+      <div className="flex">
+        {/* Sidebar en pantallas grandes y menú desplegable en pantallas pequeñas */}
+        <div
+          className={`sidebar md:block ${
+            isSidebarOpen
+              ? "block absolute top-0 left-0 z-20 shadow-md transition-all delay-100 ease-out"
+              : "hidden"
+          } md:w-1/4 md:static md:p-4`}
+        >
+          <button
+            className="close-btn md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          >
+            ×
+          </button>
+          <SidebarCategories
             selectedCategory={selectedSubcategory}
-            collectionName={collectionToUse}
+            onSelectCategory={handleCategorySelect}
           />
-        )}
+        </div>
+
+        {/* Contenido principal */}
+        <div className="main-content flex-1">
+          {selectedSubcategory && (
+            <CategoryContent
+              selectedCategory={selectedSubcategory}
+              collectionName={collectionToUse}
+            />
+          )}
+        </div>
       </div>
     </div>
   );
