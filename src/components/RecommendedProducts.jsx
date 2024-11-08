@@ -1,107 +1,85 @@
-// Importa estilos de slick-carousel (asegúrate de haberlos importado en tu CSS global)
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-
-import Slider from "react-slick";
+import { useEffect, useState } from "react";
+import { db, storage } from "../firebase"; // Asegúrate de importar correctamente db y storage
+import { collection, getDocs } from "firebase/firestore";
+import { ref, getDownloadURL } from "firebase/storage";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
 import ProductCard from "./ProductCard";
 
-// IMPORTANDO IMAGENES DE PROMOCIONES
-
-import CARRETILLA5FT from "../assets/destacados/carretillas_5ft3.png";
-import LAMPA_ESPAÑOL from "../assets/destacados/Lampa_español.png";
-import LAMPA_SANITARIA from "../assets/destacados/Lampa_sanitaria.png";
-import DESI_36_2 from "../assets/promociones/DESI-36-2.png";
-import EBA_5P_2 from "../assets/promociones/EBA-5P-2.png";
-import ERGO_4580_2 from "../assets/promociones/ERGO-4580-2.png";
-
+// Configura Swiper con los módulos necesarios
 const RecommendedProducts = () => {
-  const products = [
-    {
-      img: CARRETILLA5FT,
-      title: "Carretilla 5.5 ft3, súper reforzada",
-      price: "231.00",
-      details:
-        "Utilizado en cercos ganaderos, agrícolas, industriales y de seguridad.",
-    },
-    {
-      img: LAMPA_ESPAÑOL,
-      title: `Lampa modelo español, puño "Y"`,
-      price: "29.00",
-      details: "Profundidad máxima de succión: 8m",
-    },
-    {
-      img: LAMPA_SANITARIA,
-      title: `Lampa sanitaria, puño "Y"`,
-      price: "53.00",
-      details: "Motor con bobinas de aluminio",
-    },
-    {
-      img: DESI_36_2,
-      title: "Destornillador inalámbrico, 3.6V",
-      price: "50.40",
-      details: "Luz LED para iluminar área de trabajo",
-    },
-    {
-      img: EBA_5P_2,
-      title: `Amoladora de banco Ø 5", 1/6 HP, 120 W`,
-      price: "118.80",
-      details: "Motor con bobinas de aluminio",
-    },
-    {
-      img: ERGO_4580_2,
-      title: `Amoladora 4 1/2", 850W`,
-      price: "97.02",
-      details: "Mango ajustable a 3 posiciones",
-    },
-  ];
+  const [products, setProducts] = useState([]);
+  const [loading, setLoading] = useState(true); // Estado para manejar el loader
 
-  // Configuración de React Slick
-  const settings = {
-    dots: true, // Mostrar indicadores debajo del carrusel
-    infinite: false, // Hacer que el carrusel sea infinito
-    speed: 500, // Velocidad del deslizamiento
-    slidesToShow: 4, // Número de cards visibles en escritorio
-    slidesToScroll: 1, // Avanzar de una card a la vez
-    arrows: true,
-    responsive: [
-      {
-        breakpoint: 992, // Hasta 992px mostrar 3 cards
-        settings: {
-          slidesToShow: 3,
-        },
-      },
-      {
-        breakpoint: 768, // Hasta 768px mostrar 2 cards
-        settings: {
-          slidesToShow: 2,
-        },
-      },
-      {
-        breakpoint: 576, // Hasta 576px mostrar 1 card
-        settings: {
-          slidesToShow: 1,
-        },
-      },
-    ],
-  };
+  // Obtener datos de Firestore y URLs de las imágenes de Storage
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const querySnapshot = await getDocs(collection(db, "productos_populares"));
+      const productsData = await Promise.all(
+        querySnapshot.docs.map(async (doc) => {
+          const productData = doc.data();
+          const imgRef = ref(storage, productData.imagen); // imgPath debe contener el path de la imagen en Storage, por ejemplo 'promocion_mes/ALPU-200.png'
+
+          try {
+            const imgUrl = await getDownloadURL(imgRef);
+            return { id: doc.id, ...productData, imgUrl }; // Añadimos la URL completa de la imagen al objeto del producto
+          } catch (error) {
+            console.error("Error al obtener URL de imagen:", error);
+            return { id: doc.id, ...productData, imgUrl: "" }; // Si hay un error, se asigna una URL vacía o una imagen de placeholder
+          } finally {
+            setLoading(false); // Termina la carga
+          }
+        })
+      );
+
+      setProducts(productsData);
+    };
+
+    fetchProducts();
+  }, []);
+
+  // Mostrar loader mientras se cargan los productos
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="loader"></div>
+      </div>
+    );
+  }
 
   return (
     <div>
-      <h1 className="text-4xl font-bold text-BlueDark">Productos Más Pedidos</h1>
+      <h1 className="text-4xl font-bold text-BlueDark">Productos Populares</h1>
       <hr />
       <div className="carousel-container my-6">
-        <Slider {...settings}>
-          {products.map((products, index) => (
-            <div key={index} style={{ padding: "0 10px" }}>
-              <ProductCard
-                img={products.img}
-                title={products.title}
-                price={products.price}
-                detail={products.details}
-              />
-            </div>
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={4}
+          navigation={true} // Habilitar navegación
+          pagination={{ clickable: true }} // Habilitar paginación
+          modules={[Navigation, Pagination]} // Añadir Navigation y Pagination
+          breakpoints={{
+            1020: { slidesPerView: 4 },
+            992: { slidesPerView: 3 },
+            768: { slidesPerView: 2 },
+            370: { slidesPerView: 1 },
+          }}
+          className="custom-swiper"
+        >
+          {products.map((product) => (
+            <SwiperSlide key={product.id}>
+                <ProductCard
+                  img={product.imgUrl}
+                  title={product.nombre}
+                  price={product.precio}
+                  detail={product.descripcion}
+                />
+            </SwiperSlide>
           ))}
-        </Slider>
+        </Swiper>
       </div>
     </div>
   );
