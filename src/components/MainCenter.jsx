@@ -14,7 +14,7 @@ import image6 from "../assets/ComponentesElectricos.png";
 
 const MainCenter = () => {
   return (
-    <div>
+    <div className="pt-[140px]">
       <GalleryPhotos />
       <div className="">
         <div className="w-[80%] m-auto my-6 space-y-10">

@@ -4,7 +4,7 @@ import Map from './Map';
 const Contact = () => {
   return (
     <>
-      <div className=" min-h-screen flex items-center justify-center mt-10 ">
+      <div className=" min-h-screen flex items-center justify-center pt-[220px]">
         <div className="">
           <img
             src={ContactImage}

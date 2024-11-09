@@ -11,7 +11,7 @@ const AboutUs = () => {
   }, []);
 
   return (
-    <div className=" min-h-screen flex items-center justify-center w-[80%] m-auto">
+    <div className=" min-h-screen flex items-center justify-center w-[80%] m-auto pt-[140px]">
       <div className="my-10">
         <h1 className="text-4xl font-bold text-center mb-14">
           Te invitamos a conocernos un poco más

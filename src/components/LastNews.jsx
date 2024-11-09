@@ -56,7 +56,7 @@ const LastNews = () => {
   }
 
   return (
-    <div className="w-[80%] m-auto min-h-screen">
+    <div className="w-[80%] m-auto min-h-screen pt-[140px]">
       <h1 className="text-4xl font-bold text-center mt-10 mb-6">
         Ofertas del mes
       </h1>

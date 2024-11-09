@@ -108,7 +108,7 @@ const ProductRecomends = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen">
+    <div className="bg-gray-100 min-h-screen pt-[140px]">
       <div className="flex items-center justify-center w-[80%] m-auto pt-10">
         <div className="flex w-full justify-around bg-white py-4 rounded-lg shadow-xl">
           <div className="flex justify-center items-center w-[50%] relative">

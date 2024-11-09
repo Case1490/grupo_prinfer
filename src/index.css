@@ -643,3 +643,23 @@ button:disabled {
 .close-btn:hover{
   background-color: red;
 }
+
+.resultsContainer {
+  position: absolute;
+  max-height: 400px;
+  overflow-y: auto;
+  border-radius: 1rem;
+  margin-top: 10px;
+  z-index: 90;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #ffcc00;
+}
+
+.highlight {
+  color: #ff5722;
+  /* Color llamativo */
+  font-weight: bold;
+}
