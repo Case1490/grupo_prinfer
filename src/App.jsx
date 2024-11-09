@@ -7,6 +7,7 @@ import Contact from "./components/Contact";
 import AboutUs from "./components/AboutUs";
 import LastNews from "./components/LastNews";
 import ProductDetailInfo from "./components/ProductDetailInfo";
+import ProductRecomends from "./components/ProductRecomends";
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
       <Routes>
         <Route path="/" element={<MainCenter />} />
         <Route path="/productos" element={<AllProduct />} />
+        <Route path="/populares/:id" element={<ProductRecomends />} />
         <Route path="/novedades" element={<LastNews />} />
         <Route path="/novedades/:idNews" element={<ProductDetailInfo />} />
         <Route path="/nosotros" element={<AboutUs />} />

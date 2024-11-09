@@ -8,6 +8,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import ProductCard from "./ProductCard";
+import { Link } from "react-router-dom";
 
 // Configura Swiper con los módulos necesarios
 const RecommendedProducts = () => {
@@ -71,12 +72,14 @@ const RecommendedProducts = () => {
         >
           {products.map((product) => (
             <SwiperSlide key={product.id}>
+              <Link to={`/populares/${product.id}`}>
                 <ProductCard
                   img={product.imgUrl}
                   title={product.nombre}
                   price={product.precio}
                   detail={product.descripcion}
                 />
+              </Link>
             </SwiperSlide>
           ))}
         </Swiper>
