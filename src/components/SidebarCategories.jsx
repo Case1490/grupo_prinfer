@@ -1,5 +1,5 @@
 // SidebarCategories.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
   const [openMenus, setOpenMenus] = useState({
@@ -37,6 +37,11 @@ const SidebarCategories = ({ selectedCategory, onSelectCategory }) => {
       [category]: !prevState[category],
     }));
   };
+
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
 
   return (
     <div className="w-full p-4">

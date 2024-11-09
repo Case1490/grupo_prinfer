@@ -630,6 +630,21 @@ button:disabled {
   z-index: 20;
   transform: translateX(0);
   transition: transform 0.3s ease;
+  overflow-y: auto;
+}
+
+@media (max-width: 750px) {
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: white;
+    z-index: 110;
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    overflow-y: auto;
+  }
 }
 
 .close-btn {

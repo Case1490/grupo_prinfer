@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import SidebarCategories from "./SidebarCategories";
 import CategoryContent from "./CategoryContent";
 
@@ -54,11 +54,16 @@ const AllProduct = () => {
   const collectionToUse =
     getCollectionForSelectedSubcategory(selectedSubcategory);
 
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
+
   return (
     <div className="w-[85%] m-auto relative pt-[140px]">
       {/* Botón para abrir/cerrar el sidebar en pantallas pequeñas */}
       <button
-        className="block md:hidden my-4 p-2 bg-gray-200 text-gray-800 rounded"
+        className="block md:hidden my-4 p-2 bg-gray-200 text-gray-800 rounded mt-[60px]"
         onClick={() => setIsSidebarOpen(!isSidebarOpen)}
       >
         {isSidebarOpen ? "Cerrar Categorías" : "Ver Categorías"}
@@ -67,7 +72,7 @@ const AllProduct = () => {
       {/* Fondo oscuro detrás del sidebar */}
       {isSidebarOpen && (
         <div
-          className="overlay inset-0 bg-black bg-opacity-50 z-10"
+          className="overlay inset-0 bg-black bg-opacity-50"
           onClick={() => setIsSidebarOpen(false)}
         ></div>
       )}
@@ -77,7 +82,7 @@ const AllProduct = () => {
         <div
           className={`sidebar md:block ${
             isSidebarOpen
-              ? "block absolute top-0 left-0 z-20 shadow-md transition-all delay-100 ease-out"
+              ? "block absolute top-0 left-0 shadow-md transition-all delay-100 ease-out"
               : "hidden"
           } md:w-1/4 md:static md:p-4`}
         >

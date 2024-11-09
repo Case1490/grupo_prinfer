@@ -14,6 +14,7 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
+  const [searchTerm, setSearchTerm] = useState(""); // Nuevo estado para el término de búsqueda
 
   useEffect(() => {
     if (selectedCategory && collectionName) {
@@ -53,7 +54,8 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
           }
         } catch (error) {
           setError(
-            "Error al cargar los productos. Por favor, inténtalo más tarde.", error
+            "Error al cargar los productos. Por favor, inténtalo más tarde.",
+            error
           );
         }
 
@@ -64,19 +66,43 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
     }
   }, [selectedCategory, collectionName]);
 
+  // Filtrar los productos en base al término de búsqueda
+  const filteredProducts = products.filter((product) =>
+    product.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
+
   return (
     <div className="p-2">
-      <h2 className="text-xl uppercase text-center font-bold mb-6 mt-3">
-        {selectedCategory}
-      </h2>
+      <div className="flex items-center justify-between">
+        <h2 className="text-xl uppercase font-bold mb-6 mt-3">
+          {selectedCategory}
+        </h2>
+
+        {/* Campo de búsqueda */}
+        <div className="mb-4">
+          <input
+            type="text"
+            placeholder="Buscar productos..."
+            className="w-full p-2 border-2 rounded-full outline-none border-black placeholder:text-black"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+          />
+        </div>
+      </div>
+
       {loading ? (
         <div className="loader"></div>
       ) : error ? (
         <p>{error}</p>
       ) : (
         <div className="product-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-2 gap-y-6">
-          {products.length > 0 ? (
-            products.map((product) => (
+          {filteredProducts.length > 0 ? (
+            filteredProducts.map((product) => (
               <div key={product.id} className="product-card">
                 <CardProductoCategory
                   imageUrl={product.imageUrl}
