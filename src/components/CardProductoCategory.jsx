@@ -7,7 +7,7 @@ const CardProductoCategory = ({ imageUrl, nombre }) => {
   return (
     <div className="rounded-lg p-2 border-2 border-gray shadow-xl product_category">
       <div className="image-container">
-        <img src={imageUrl} alt={nombre} className="product-image" />
+        <img src={imageUrl} alt={nombre} className="w-[70%]" />
       </div>
 
       <h1 className="text-center text-xl text-black uppercase font-bold">{nombre}</h1>

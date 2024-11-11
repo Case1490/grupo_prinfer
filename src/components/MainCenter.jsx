@@ -10,9 +10,15 @@ import image3 from "../assets/productoLimpieza.png";
 import image4 from "../assets/pinturasIndustriales.png";
 import image5 from "../assets/HerramientasProfesionales.png";
 import image6 from "../assets/ComponentesElectricos.png";
+import { useEffect } from "react";
 
 
 const MainCenter = () => {
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
+
   return (
     <div className="pt-[140px]">
       <GalleryPhotos />

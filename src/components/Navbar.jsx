@@ -98,15 +98,17 @@ const Navbar = () => {
                 <div
                   key={result.id}
                   className="flex items-center p-2 hover:bg-gray-100 cursor-pointer bg-white w-[350px] border-b-2"
-                  onClick={() =>
+                  onClick={() => {
                     navigate(
                       `/${
                         result.collectionName === "productos_populares"
                           ? "populares"
                           : "novedades"
                       }/${result.id}`
-                    )
-                  }
+                    );
+                    setResults([]); // Oculta el cuadro de resultados
+                    setSearchTerm("");
+                  }}
                 >
                   <img
                     src={result.imageUrl}

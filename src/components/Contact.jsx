@@ -1,7 +1,13 @@
+import { useEffect } from 'react';
 import ContactImage from '../assets/contacto.jpg'
 import Map from './Map';
 
 const Contact = () => {
+  // Código para que nos lleve al inicio de la página
+  useEffect(() => {
+    window.scrollTo(0, 0); // Desplazarse hacia el inicio
+  }, []);
+
   return (
     <>
       <div className=" min-h-screen flex items-center justify-center pt-[220px]">
@@ -89,7 +95,7 @@ const Contact = () => {
         </div>
       </div>
 
-      <Map/>
+      <Map />
     </>
   );
 }
