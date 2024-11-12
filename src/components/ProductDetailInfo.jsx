@@ -181,7 +181,7 @@ const ProductDetailInfo = () => {
 
               <div className="flex flex-col sm:flex-row sm:space-y-0 space-y-2 gap-x-4">
                 <InputAmount />
-                <ButtonShop />
+                {product && <ButtonShop nombre={product.nombre} />}
               </div>
 
               <div className="bg-red-600 my-4 rounded-lg py-2 text-white font-bold text-center">

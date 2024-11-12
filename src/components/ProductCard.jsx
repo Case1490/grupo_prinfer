@@ -8,7 +8,6 @@ const ProductCard = ({ img, title, price, detail }) => {
 
   const getTruncatedText = (text, wordLimit) => {
     if (typeof text === "string") {
-      console.log("Texto recibido:", text); // Verifica el valor inicial
       const words = text.split(" ");
       if (words.length > wordLimit) {
         console.log(
@@ -23,13 +22,10 @@ const ProductCard = ({ img, title, price, detail }) => {
   };
 
   const displayText = isExpanded ? detail : getTruncatedText(detail, 30);
-  console.log("Texto a mostrar:", displayText); // Verificar que `detail` tiene valor
 
   return (
     <div className="rounded-lg p-2 border-2 border-gray shadow-xl product">
-      <div
-        className="image-container"
-      >
+      <div className="image-container">
         <img
           src={img}
           alt={title}
@@ -59,8 +55,11 @@ const ProductCard = ({ img, title, price, detail }) => {
 
       <div className="mt-2">
         <a
-          href=""
+          href={`https://wa.me/917279856?text=Hola, estoy interesado en ${title}`}
+          target="_blank"
+          rel="noopener noreferrer"
           className="bg-green-600 py-2 px-4 rounded-lg text-white font-bold uppercase flex items-center justify-center gap-x-2 text-center hover:bg-green-700"
+          onClick={(event) => event.stopPropagation()} // Evita la propagación del evento clic
         >
           <WhatsAppIcon />
           Comprar
