@@ -56,12 +56,12 @@ const LastNews = () => {
   }
 
   return (
-    <div className="w-[80%] m-auto min-h-screen pt-[140px]">
+    <div className="w-[80%] m-auto min-h-screen pt-[240px] lg:pt-[140px]">
       <h1 className="text-4xl font-bold text-center mt-10 mb-6">
         Ofertas del mes
       </h1>
 
-      <div className="grid grid-cols-4 gap-x-2 gap-y-6 my-6 mt-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-2 gap-y-6 my-6 mt-4">
         {products.map((product, index) => (
           <div key={index} style={{ padding: "0 10px" }}>
             <Link to={`/novedades/${product.id}`}>

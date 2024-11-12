@@ -65,9 +65,9 @@ const Contact = () => {
 
   return (
     <>
-      <div className="min-h-screen flex items-center justify-center pt-[220px]">
+      <div className="min-h-screen flex items-center justify-center pt-[290px] lg:pt-[220px]">
         {/* Imagen */}
-        <div className="">
+        <div className="hidden md:block">
           <img
             src={ContactImage}
             alt="contacto"
@@ -76,7 +76,7 @@ const Contact = () => {
         </div>
 
         {/* Formulario */}
-        <div className="w-[40%]">
+        <div className="w-full md:w-[40%]">
           <div className="flex-1">
             <div className="max-w-md mx-auto px-8 py-6 bg-gray-100 rounded-lg shadow-lg">
               <h2 className="text-3xl font-semibold text-center text-gray-800 mb-4">

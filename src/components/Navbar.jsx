@@ -5,6 +5,8 @@ import { db } from "../firebase";
 import Logo from "../assets/Logo_amarillo.png";
 import IconPDF from "../assets/icon_pdf.png";
 import { useEffect, useState, useRef } from "react";
+import MenuIcon from "../icons/MenuIcon";
+import CrossIcon from "../icons/CrossIcon";
 
 const Navbar = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -12,6 +14,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const storage = getStorage();
   const searchContainerRef = useRef(null);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Función para buscar productos
   const handleSearch = async (term) => {
@@ -66,15 +69,23 @@ const Navbar = () => {
     };
   }, []);
 
+  // Función para manejar la apertura y cierre del menú
+  const toggleMenu = () => {
+    console.log('estás abriendo el menu');
+    setIsMenuOpen(!isMenuOpen);
+  };
+
   return (
     <div className="bg-GrayMain z-[100] fixed w-full">
-      <div className="w-[80%] m-auto py-4 flex items-center justify-between">
-        <div className="w-[250px]">
+      <div className="w-[80%] m-auto py-4 flex items-center justify-between flex-col lg:flex-row">
+        {/* Logo */}
+        <div className="w-[250px] mb-4 lg:mb-0">
           <img src={Logo} alt="Prinfer" className="w-full" />
         </div>
 
-        <div ref={searchContainerRef}>
-          <div className="InputContainer relative">
+        {/* Contenedor de búsqueda */}
+        <div ref={searchContainerRef} className="w-full lg:w-auto">
+          <div className="InputContainer">
             <input
               placeholder="Buscar productos..."
               id="input"
@@ -93,11 +104,11 @@ const Navbar = () => {
 
           {/* Mostrar resultados de búsqueda */}
           {results.length > 0 && (
-            <div className="resultsContainer">
+            <div className="resultsContainer absolute bg-white w-full border-t-2 shadow-lg max-h-[300px] overflow-y-auto mt-2">
               {results.map((result) => (
                 <div
                   key={result.id}
-                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer bg-white w-[350px] border-b-2"
+                  className="flex items-center p-2 hover:bg-gray-100 cursor-pointer w-full border-b-2"
                   onClick={() => {
                     navigate(
                       `/${
@@ -135,15 +146,18 @@ const Navbar = () => {
           )}
         </div>
 
-        <div className="flex items-center gap-2">
+        {/* Catálogo de productos */}
+        <div className="flex items-center gap-2 mt-4 lg:mt-0">
           <div className="w-[30px]">
             <img src={IconPDF} alt="Catálogo de Productos" className="w-full" />
           </div>
           <p>Catálogo de Productos</p>
         </div>
       </div>
-      <div className="bg-BlueDark text-white">
-        <div className="w-[80%] m-auto flex">
+
+      <div className="bg-BlueDark text-white h-[44px] flex items-center">
+        {/* Menú para pantallas grandes (lg) */}
+        <div className="w-[80%] m-auto hidden lg:flex">
           <NavLink to="/" className="link">
             INICIO
           </NavLink>
@@ -159,6 +173,55 @@ const Navbar = () => {
           <NavLink to="/contacto" className="link">
             CONTACTO
           </NavLink>
+        </div>
+
+        {/* Menú para pantallas pequeñas (lg:hidden) */}
+        <div className="lg:hidden w-[80%] m-auto flex justify-between items-center">
+          <div onClick={toggleMenu} className=" cursor-pointer">
+            {isMenuOpen ? <CrossIcon /> : <MenuIcon />}
+          </div>
+
+          {/* Ícono de menú que abre/cierra el menú */}
+          {/* Menú desplegable */}
+          {isMenuOpen && (
+            <div className="absolute top-[242px] left-0 w-full bg-BlueDark text-white p-4 flex flex-col items-center space-y-4">
+              <NavLink
+                to="/"
+                className="link w-full text-center rounded-full"
+                onClick={toggleMenu}
+              >
+                INICIO
+              </NavLink>
+              <NavLink
+                to="/productos"
+                className="link w-full text-center rounded-full"
+                onClick={toggleMenu}
+              >
+                PRODUCTOS
+              </NavLink>
+              <NavLink
+                to="/novedades"
+                className="link w-full text-center rounded-full"
+                onClick={toggleMenu}
+              >
+                NOVEDADES
+              </NavLink>
+              <NavLink
+                to="/nosotros"
+                className="link w-full text-center rounded-full"
+                onClick={toggleMenu}
+              >
+                SOBRE NOSOTROS
+              </NavLink>
+              <NavLink
+                to="/contacto"
+                className="link w-full text-center rounded-full"
+                onClick={toggleMenu}
+              >
+                CONTACTO
+              </NavLink>
+            </div>
+          )}
         </div>
       </div>
     </div>

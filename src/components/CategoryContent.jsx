@@ -78,13 +78,13 @@ const CategoryContent = ({ selectedCategory, collectionName }) => {
 
   return (
     <div className="p-2">
-      <div className="flex items-center justify-between">
+      <div className="flex items-center justify-between flex-col md:flex-row">
         <h2 className="text-xl uppercase font-bold mb-6 mt-3">
           {selectedCategory}
         </h2>
 
         {/* Campo de búsqueda */}
-        <div className="mb-4">
+        <div className="mb-4 bg-red-50 w-full md:w-[40%]">
           <input
             type="text"
             placeholder="Buscar productos..."

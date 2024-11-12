@@ -29,8 +29,8 @@ const Footer = () => {
   return (
     <footer className="bg-BlueDark text-white py-10">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
-        <div className="space-y-4">
-          <h4 className="text-lg font-semibold">Acerca de Nosotros</h4>
+        <div className="space-y-4 mx-4 text-center md:mx-0 md:text-left">
+          <h4 className="text-2xl font-semibold">Acerca de Nosotros</h4>
           <p className="text-sm">
             Somos una empresa peruana dedicada y especializada en la
             distribución de suministros industriales para los sectores de
@@ -40,8 +40,8 @@ const Footer = () => {
           </p>
         </div>
         <div className="space-y-4 flex flex-col items-center">
-          <h4 className="text-lg font-semibold">Enlaces Rápidos</h4>
-          <ul className="space-y-2 text-sm">
+          <h4 className="text-2xl font-semibold">Enlaces Rápidos</h4>
+          <ul className="space-y-2 text-lg text-center">
             <li>
               <Link to="/" className="hover:underline">
                 Inicio
@@ -69,8 +69,8 @@ const Footer = () => {
             </li>
           </ul>
         </div>
-        <div className="space-y-4">
-          <h4 className="text-lg font-semibold">Contacto</h4>
+        <div className="space-y-4 flex flex-col items-center  md:items-start">
+          <h4 className="text-2xl font-semibold">Contacto</h4>
           <p className="text-md flex">
             <MapIcon />
             123 Calle Industrial, <br />
@@ -92,13 +92,13 @@ const Footer = () => {
             <EmailIcon /> comercial1.prinfer@gmail.com
           </p>
         </div>
-        <div className="space-y-4">
-          <h4 className="text-lg font-semibold">Suscríbete</h4>
+        <div className="space-y-4 text-center md:text-left">
+          <h4 className="text-2xl font-semibold">Suscríbete</h4>
           <p className="text-sm">
             Recibe nuestras últimas noticias y ofertas especiales.
           </p>
           <form
-            className="flex flex-col space-y-2"
+            className="flex flex-col space-y-2 mx-2 md:mx-0"
             onSubmit={handleSubmit}
             action="https://formsubmit.co/comercial1.prinfer@gmail.com"
             method="POST"
@@ -130,7 +130,7 @@ const Footer = () => {
         </div>
       </div>
       <div className="container mx-auto mt-8 border-t border-gray-700 pt-4 flex flex-col md:flex-row justify-between items-center">
-        <p className="text-sm">
+        <p className="text-sm text-center md:text-left">
           Distribuidora Prinfer © 2024. Todos los derechos reservados.
         </p>
         <div className="mt-4 md:mt-0 flex space-x-4">

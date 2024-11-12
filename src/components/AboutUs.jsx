@@ -10,15 +10,17 @@ const AboutUs = () => {
     window.scrollTo(0, 0); // Desplazarse hacia el inicio
   }, []);
 
+  const mensaje = `Hola, soy...`;
+
   return (
-    <div className=" min-h-screen flex items-center justify-center w-[80%] m-auto pt-[140px]">
+    <div className=" min-h-screen flex items-center justify-center w-[80%] m-auto pt-[240px] lg:pt-[140px]">
       <div className="my-10">
         <h1 className="text-4xl font-bold text-center mb-14">
           Te invitamos a conocernos un poco más
         </h1>
 
-        <div className="flex gap-x-4 justify-around">
-          <div className="text-center w-[50%] grid place-content-center bg-BlueDark text-white px-4 rounded-lg">
+        <div className="flex flex-col items-center space-y-4 lg:flex-row gap-x-4 justify-around">
+          <div className="text-center w-full lg:w-[50%] grid place-content-center bg-BlueDark text-white p-4 rounded-lg">
             <h1 className="text-3xl font-bold mb-4">
               ¿Cómo nació Grupo Prinfer?
             </h1>
@@ -34,22 +36,24 @@ const AboutUs = () => {
             </p>
 
             <a
-              href="#"
+              href={`https://wa.me/917279856?text=${mensaje}`}
               className="inline-block text-black mt-4 px-4 py-2 rounded-full font-bold uppercase w-[150px] bg-GrayMain transition-all ease-out m-auto"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               Contáctanos
             </a>
           </div>
 
           <div className="">
-            <div className="w-[400px]">
+            <div className=" w-[300px] sm:w-[400px]">
               <img src={Nacimiento} alt="DistribuidoraPrinfer" />
             </div>
           </div>
         </div>
 
         <div className="mt-10">
-          <h1 className="text-4xl font-bold text-center mb-4">
+          <h1 className=" text-3xl sm:text-4xl font-bold text-center mb-4">
             Nuestra Misión, Visión y Valores
           </h1>
 
@@ -59,7 +63,7 @@ const AboutUs = () => {
         </div>
 
         <div className="mt-10">
-          <h1 className="text-4xl font-bold text-center mb-8">
+          <h1 className=" text-2xl sm:text-4xl font-bold text-center mb-8">
             Nuestros planes a Futuro
           </h1>
 

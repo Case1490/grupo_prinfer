@@ -20,13 +20,13 @@ const MainCenter = () => {
   }, []);
 
   return (
-    <div className="pt-[140px]">
+    <div className="pt-[240px] lg:pt-[140px]">
       <GalleryPhotos />
       <div className="">
         <div className="w-[80%] m-auto my-6 space-y-10">
           <CardsContainer />
           <NewProducts />
-          <div className="flex gap-4">
+          <div className="flex gap-4 md:flex-row flex-col">
             <div>
               <img src={image1} alt="" className="w-full rounded-lg" />
             </div>
@@ -37,7 +37,7 @@ const MainCenter = () => {
           </div>
           <RecommendedProducts />
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 md:flex-row flex-col">
             <div>
               <img src={image3} alt="" className="w-full rounded-lg" />
             </div>
@@ -47,7 +47,7 @@ const MainCenter = () => {
             </div>
           </div>
 
-          <div className="flex gap-4">
+          <div className="flex gap-4 md:flex-row flex-col">
             <div>
               <img src={image5} alt="" className="w-full rounded-lg" />
             </div>

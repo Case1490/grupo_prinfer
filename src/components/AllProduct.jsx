@@ -60,7 +60,7 @@ const AllProduct = () => {
   }, []);
 
   return (
-    <div className="w-[85%] m-auto relative pt-[140px]">
+    <div className="w-[85%] m-auto relative pt-[240px] lg:pt-[140px]">
       {/* Botón para abrir/cerrar el sidebar en pantallas pequeñas */}
       <button
         className="block md:hidden my-4 p-2 bg-gray-200 text-gray-800 rounded mt-[60px]"

@@ -108,10 +108,10 @@ const ProductRecomends = () => {
   }
 
   return (
-    <div className="bg-gray-100 min-h-screen pt-[140px]">
+    <div className="bg-gray-100 min-h-screen pt-[240px] lg:pt-[140px]">
       <div className="flex items-center justify-center w-[80%] m-auto pt-10">
-        <div className="flex w-full justify-around bg-white py-4 rounded-lg shadow-xl">
-          <div className="flex justify-center items-center w-[50%] relative">
+        <div className="flex flex-col items-center lg:flex-row w-full justify-around bg-white py-4 rounded-lg shadow-xl">
+          <div className="flex justify-center items-center w-full lg:w-[50%] relative">
             <div
               ref={zoomLensRef}
               className="zoom-lens"
@@ -136,14 +136,16 @@ const ProductRecomends = () => {
             />
           </div>
 
-          <div className="w-[50%]">
-            <h1 className="text-3xl font-bold text-left">{product.nombre}</h1>
+          <div className=" w-full lg:w-[50%]">
+            <h1 className="text-3xl font-bold text-left ml-2 sm:ml-0">
+              {product.nombre}
+            </h1>
             <hr />
-            <p className="text-lg">{product.descripcion}</p>
+            <p className="text-lg mx-2 sm:mx-0">{product.descripcion}</p>
 
             <div className="p-2">
-              <div className="flex gap-x-4 my-4 mr-2">
-                <div className="bg-BlueDark p-4 rounded-lg text-white w-[50%]">
+              <div className="flex flex-col sm:flex-row gap-x-4 my-4 mr-2 space-y-2 sm:space-y-0">
+                <div className="bg-BlueDark p-4 rounded-lg text-white w-full sm:w-[50%]">
                   <h1 className="font-bold text-xl mb-2">Especificaciones</h1>
                   {product.especificaciones?.length > 0 ? (
                     <ul className="list-disc list-inside">
@@ -156,7 +158,7 @@ const ProductRecomends = () => {
                   )}
                 </div>
 
-                <div className="bg-YellowMain p-4 rounded-lg text-white w-[50%]">
+                <div className="bg-YellowMain p-4 rounded-lg text-white w-full sm:w-[50%]">
                   <h1 className="font-bold text-xl mb-2">Detalles</h1>
                   {product.detalles?.length > 0 ? (
                     <ul className="list-disc list-inside">
@@ -177,7 +179,7 @@ const ProductRecomends = () => {
                 </p>
               </div>
 
-              <div className="flex gap-x-4">
+              <div className="flex flex-col sm:flex-row sm:space-y-0 space-y-2 gap-x-4">
                 <InputAmount />
                 <ButtonShop />
               </div>

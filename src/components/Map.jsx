@@ -23,12 +23,18 @@ const Map = () => {
             Visítanos en nuestra tienda física en
             <span className="font-semibold italic">Villa El Salvador</span>,
             donde encontrarás una amplia variedad de productos. Estamos ubicados
-            en una zona accesible, cerca de puntos de referencia como el 
-            <span className="font-semibold italic"> Monumento a la Mujer</span> .
+            en una zona accesible, cerca de puntos de referencia como el
+            <span className="font-semibold italic">
+              {" "}
+              Monumento a la Mujer
+            </span>{" "}
+            .
           </p>
 
           <div className="text-center mt-4 space-y-2">
-            <p>📞 Teléfono: +51 902 040 118</p>
+            <p>
+              📞 Teléfono: +51 908 918 768 / +51 902 089 114 / +51 917 279 856
+            </p>
             <p>📧 Correo: comercial1.prinfer@gmail.com</p>
             <p>🕒 Horario de atención: Lunes a Lunes, 24/7 siempre para ti!</p>
           </div>
