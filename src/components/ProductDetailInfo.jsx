@@ -109,7 +109,7 @@ const ProductDetailInfo = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen pt-[240px] lg:pt-[140px]">
-      <div className="flex items-center justify-center w-[80%] m-auto pt-10">
+      <div className="flex items-center justify-center w-[95%] sm:w-[80%] m-auto pt-10">
         <div className="flex flex-col items-center lg:flex-row w-full justify-around bg-white py-4 rounded-lg shadow-xl">
           <div className="flex justify-center items-center w-full lg:w-[50%] relative">
             <div
@@ -137,7 +137,9 @@ const ProductDetailInfo = () => {
           </div>
 
           <div className=" w-full lg:w-[50%]">
-            <h1 className="text-3xl font-bold text-left ml-2 sm:ml-0">{product.nombre}</h1>
+            <h1 className="text-3xl font-bold text-left ml-2 sm:ml-0">
+              {product.nombre}
+            </h1>
             <hr />
             <p className="text-lg mx-2 sm:mx-0">{product.descripcion}</p>
 

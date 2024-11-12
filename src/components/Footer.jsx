@@ -73,8 +73,8 @@ const Footer = () => {
           <h4 className="text-2xl font-semibold">Contacto</h4>
           <p className="text-md flex">
             <MapIcon />
-            123 Calle Industrial, <br />
-            Ciudad, País
+            Villa El Salvador <br />
+            Lima, Perú
           </p>
           <div className="space-y-2">
             <p className="text-md flex items-center space-x-2">
